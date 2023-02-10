@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "C:/Users/nhj635/house-price-prediction/node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
