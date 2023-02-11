@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class HouseTableComponent {
 
+  table_cols=[
+    "Id",
+    "OverallQual", 
+    "GrLivArea", 
+    "GarageCars", 
+    "TotalBsmtSF", 
+    "FullBath", 
+    "TotRmsAbvGrd", 
+    "YearBuilt", 
+    "YearRemodAdd",
+    "Fireplaces",
+    "SalePrice"
+  ] 
+
+  
 }

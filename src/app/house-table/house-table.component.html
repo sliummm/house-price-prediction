@@ -1,20 +1,9 @@
-<div class="container">
+<div class="container-xs-6-fluid">
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>OverallQual</th>
-                <th>GrLivArea</th>
-                <th>GarageCars</th>
-                <th>TotalBsmtSF</th>
-                <th>FullBath</th>
-                <th>TotRmsAbvGrd</th>
-                <th>YearBuilt</th>
-                <th>YearRemodAdd</th>
-                <th>Fireplaces</th>
-                <th>SalePrice</th>
+                <th *ngFor="let col of table_cols">{{col}}</th>
             </tr>
         </thead>
-        <tbody></tbody>
     </table>
 </div>
