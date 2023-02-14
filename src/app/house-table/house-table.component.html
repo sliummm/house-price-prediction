@@ -2,8 +2,26 @@
     <table class="table">
         <thead>
             <tr>
-                <th *ngFor="let col of table_cols">{{col}}</th>
+                <th scope="col" *ngFor="let key of Object.keys(houses[0])">{{key}}</th>
             </tr>
         </thead>
+        <tbody>
+            <tr 
+                *ngFor="let house of houses"
+                (click)="onClickItem(house.Id)"
+                >
+                <th scope="row">{{house.Id}}</th>
+                <td>{{house.overallqual}}</td>
+                <td>{{house.grlivarea}}</td>
+                <td>{{house.garagecars}}</td>
+                <td>{{house.totalbsmsf}}</td>
+                <td>{{house.fullbath}}</td>
+                <td>{{house.totrmsabvgrd}}</td>
+                <td>{{house.yearbuilt}}</td>
+                <td>{{house.yearremodadd}}</td>
+                <td>{{house.fireplaces}}</td>
+                <td>{{house.saleprice}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>

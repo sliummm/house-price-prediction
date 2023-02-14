@@ -1,53 +1,58 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
-            <form>
+            <form #houseData = "ngForm" (ngSubmit) = "onPrediction(houseData.value)">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button class="btn btn-info" type="button" *ngIf="state" (click)="OnCreateNewPrediction(); houseData.resetForm()" >New Prediction</button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="overallqual">Overall Quality</label>
-                        <select name="overallqual" id="overallqual" class="form-control">
+                        <select name="overallqual" id="overallqual" class="form-control" ngModel>
                             <option *ngFor="let lvl of qualities" [value]="lvl.value">{{lvl.key}}</option>
                         </select>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="grlivarea">Living Area(sqft)</label>
-                        <input id="grlivarea" type="text" class="form-control">
+                        <input id="grlivarea" name="grlivarea" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="garagecars">Number of car fit in garage</label>
-                        <input id="garagecars" type="text" class="form-control">
+                        <input id="garagecars" name="garagecars" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="totalbsmsf">Total Basement Area(sqft)</label>
-                        <input id="totalbsmdf" type="text" class="form-control">
+                        <input id="totalbsmdf" name="totalbsmsf" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="fullbath">Number of Full Bathroom</label>
-                        <input id="fullbath" type="text" class="form-control">
+                        <input id="fullbath" name="fullbath" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="totrmsabvgrd">Total Rooms Above the Ground</label>
-                        <input id="totrmsabvgrd" type="text" class="form-control">
+                        <input id="totrmsabvgrd" name="totrmsabvgrd" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="yearbuilt">Year Built</label>
-                        <input id="yearbuilt" type="text" class="form-control">
+                        <input id="yearbuilt" name="yearbuilt" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="yearremodadd">Year Remodel Added</label>
-                        <input id="yearremodadd" type="text" class="form-control">
+                        <input id="yearremodadd" name="yearremodadd" type="text" class="form-control" ngModel>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="fireplaces">Number of Fireplace</label>
-                        <input id="fireplaces" type="text" class="form-control">
+                        <input id="fireplaces" name="fireplaces" type="text" class="form-control" ngModel>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <button class="btn btn-success" type="submit">Predict / Update</button>
+                        <button class="btn btn-success" type="submit" >{{!state ? "Predict": "Update"}}</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-danger" type="button">Delete</button>
+                        <button class="btn btn-danger" type="button" *ngIf="state">Delete</button>
                     </div>
                     <div class="col-md-1">
                         <button class="btn btn-primary" type="button">Clear</button>

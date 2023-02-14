@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-house-form',
   templateUrl: './house-form.component.html',
   styleUrls: ['./house-form.component.css']
 })
-export class HouseFormComponent {
+export class HouseFormComponent implements OnChanges{
 
   qualities = [
     {key:'level 1', value:1},
@@ -19,4 +19,30 @@ export class HouseFormComponent {
     {key:'level 9', value:9},
     {key:'level 10', value:10}
   ]
+  state:any
+
+  @Input('houseDetail') houseDetail:any
+  @Input('formState') formState:any
+
+  
+
+  ngOnInit():void{
+    this.state=false;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.state = this.formState
+    if(this.state){
+
+    }
+  }
+  
+  OnCreateNewPrediction():void{
+    this.state = false;
+
+  }
+
+  onPrediction(formdata:any){
+    console.log("show form data-(house-form): ",formdata)
+  }
 }
