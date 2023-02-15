@@ -13,4 +13,8 @@ export class MlModelService {
     return this.http.get<any>(this.url, {responseType: "json"})
   }
 
+  post(){
+    const body = JSON.stringify
+  }
+
 }

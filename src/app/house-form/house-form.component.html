@@ -11,44 +11,44 @@
                     <div class="col-sm-6 form-group">
                         <label for="overallqual">Overall Quality</label>
                         <select name="overallqual" id="overallqual" class="form-control" ngModel>
-                            <option *ngFor="let lvl of qualities" [value]="lvl.value">{{lvl.key}}</option>
+                            <option *ngFor="let lvl of qualities" [ngValue]="lvl.value">{{lvl.key}}</option>
                         </select>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="grlivarea">Living Area(sqft)</label>
-                        <input id="grlivarea" name="grlivarea" type="text" class="form-control" ngModel>
+                        <input id="grlivarea" name="grlivarea" type="text" class="form-control" [(ngModel)]="house.fullbath">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="garagecars">Number of car fit in garage</label>
-                        <input id="garagecars" name="garagecars" type="text" class="form-control" ngModel>
+                        <input id="garagecars" name="garagecars" type="text" class="form-control" [(ngModel)]="house.garagecars">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="totalbsmsf">Total Basement Area(sqft)</label>
-                        <input id="totalbsmdf" name="totalbsmsf" type="text" class="form-control" ngModel>
+                        <input id="totalbsmdf" name="totalbsmsf" type="text" class="form-control" [ngModel]="house.totalbsmsf">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="fullbath">Number of Full Bathroom</label>
-                        <input id="fullbath" name="fullbath" type="text" class="form-control" ngModel>
+                        <input id="fullbath" name="fullbath" type="text" class="form-control" [(ngModel)]="house.fullbath">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="totrmsabvgrd">Total Rooms Above the Ground</label>
-                        <input id="totrmsabvgrd" name="totrmsabvgrd" type="text" class="form-control" ngModel>
+                        <input id="totrmsabvgrd" name="totrmsabvgrd" type="text" class="form-control" [(ngModel)]="house.totrmsabvgrd">
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="yearbuilt">Year Built</label>
-                        <input id="yearbuilt" name="yearbuilt" type="text" class="form-control" ngModel>
+                        <input id="yearbuilt" name="yearbuilt" type="text" class="form-control" [(ngModel)]="house.yearbuilt">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="yearremodadd">Year Remodel Added</label>
-                        <input id="yearremodadd" name="yearremodadd" type="text" class="form-control" ngModel>
+                        <input id="yearremodadd" name="yearremodadd" type="text" class="form-control" [(ngModel)]="house.yearremodadd">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="fireplaces">Number of Fireplace</label>
-                        <input id="fireplaces" name="fireplaces" type="text" class="form-control" ngModel>
+                        <input id="fireplaces" name="fireplaces" type="text" class="form-control" [(ngModel)]="house.fireplaces">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <button class="btn btn-success" type="submit" >{{!state ? "Predict": "Update"}}</button>
                     </div>
                     <div class="col-md-2">

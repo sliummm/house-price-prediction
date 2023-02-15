@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { HouseCrudService } from '../services/house-crud.service';
 import { MlModelService } from '../services/ml-model.service';
+import { House } from '../util/house';
 
 @Component({
   selector: 'app-house-table',
@@ -10,8 +11,8 @@ import { MlModelService } from '../services/ml-model.service';
 })
 export class HouseTableComponent implements OnInit{
 
-  houses:any
-  Object=Object
+  houses:House[]=[]
+  obj=Object
 
   @Output()
   houseGotById = new EventEmitter<any>();

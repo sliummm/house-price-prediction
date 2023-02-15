@@ -10,6 +10,11 @@ export class AppComponent {
   house:any
   formState:any
 
+  OnLoadForm(house:any){
+    this.house = house
+    console.log("First House in table:" , this.house)
+  }
+
   OnGetHouseById(house:any){
     this.house = house
     console.log("show this house-(app-component)",this.house)
@@ -17,6 +22,5 @@ export class AppComponent {
 
   OnFormStateChange(state:any){
     this.formState = state;
-    console.log("app-component:",this.formState)
   }
 }
