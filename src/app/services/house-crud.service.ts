@@ -25,9 +25,15 @@ export class HouseCrudService {
     return this.http.get<any>(`${this.url}/${id}`, {responseType:"json"})
   }
 
-  post(house: House){
-    const body = JSON.stringify(house)
-    console.log(body)
-    return this.http.post(this.url, body, {'headers': this.httpOptions.headers})
+  post(house: any){
+    return this.http.post(this.url, house, {'headers': this.httpOptions.headers})
+  }
+
+  put(house: any){
+    return this.http.put(this.url, house, {'headers': this.httpOptions.headers})
+  }
+
+  delete(id:any){
+    return this.http.delete(`${this.url}/${id}`)
   }
 }

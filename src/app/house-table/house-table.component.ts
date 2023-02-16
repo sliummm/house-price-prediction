@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 
 import { HouseCrudService } from '../services/house-crud.service';
 import { MlModelService } from '../services/ml-model.service';
@@ -9,27 +9,39 @@ import { House } from '../util/house';
   templateUrl: './house-table.component.html',
   styleUrls: ['./house-table.component.css']
 })
-export class HouseTableComponent implements OnInit{
+export class HouseTableComponent implements OnChanges{
 
-  houses:House[]=[]
-  obj=Object
-
+  @Input('dbUpdate') dbUpdate:any
+  
   @Output()
   houseGotById = new EventEmitter<any>();
   @Output()
   formState = new EventEmitter<any>();
+
+  houses:House[]=[]
+  obj=Object
+  update:any
+  isInitialized = false
 
   constructor(
     private housecurd: HouseCrudService,
     private mlModel:  MlModelService
   ){}
 
+  ngOnChanges(changes: SimpleChanges): void {
+
+    this.ngOnInit()
+}
+
   ngOnInit(): void {
     this.housecurd.fetchAll()
     .subscribe(data=>{
       this.houses = data;
+      console.log("Raw data",data)
       console.log("show all house-(house-table): ",this.houses);
     });
+    this.update = false
+    this.isInitialized = true;
   };
 
   onClickItem(id:any){

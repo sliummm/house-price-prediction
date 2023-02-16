@@ -6,6 +6,7 @@
         <app-house-form 
           [houseDetail]="house"
           [formState]="formState"
+          (onUpdate)="OnDbUpdate($event)"
           ></app-house-form>
       </div>
       <div class="col-md-6">
@@ -13,6 +14,7 @@
           (houseGotById)="OnGetHouseById($event)" 
           (formState)="OnFormStateChange($event)"
           (firstEntry)="OnLoadForm($event)"
+          [dbUpdate]="dbUpdate"
           ></app-house-table>
       </div>
     </div>

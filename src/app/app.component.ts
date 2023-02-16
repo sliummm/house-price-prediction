@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'house-price-prediction';
   house:any
   formState:any
+  dbUpdate:any
 
   OnLoadForm(house:any){
     this.house = house
@@ -22,5 +23,9 @@ export class AppComponent {
 
   OnFormStateChange(state:any){
     this.formState = state;
+  }
+
+  OnDbUpdate(dbUpdate:any){
+    this.OnDbUpdate = dbUpdate
   }
 }

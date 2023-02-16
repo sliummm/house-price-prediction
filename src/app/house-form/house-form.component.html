@@ -1,58 +1,68 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
-            <form #houseData = "ngForm" (ngSubmit) = "onPrediction(houseData.value)">
+            <form #houseData = "ngForm" (ngSubmit) = "onSaveResult()">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <button class="btn btn-info" type="button" *ngIf="state" (click)="OnCreateNewPrediction(); houseData.resetForm()" >New Prediction</button>
+                    <div class="col-sm-6">
+                        <h4>House Data Form</h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="col-sm-12">
+                            <button class="btn btn-info" type="button" *ngIf="state" (click)="OnCreateNewPrediction(); houseData.resetForm()" >New Prediction</button>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6 form-group">
                         <label for="overallqual">Overall Quality</label>
-                        <select name="overallqual" id="overallqual" class="form-control" ngModel>
+                        <select name="overallqual" id="overallqual" class="form-control" [(ngModel)]="house.overallqual">
                             <option *ngFor="let lvl of qualities" [ngValue]="lvl.value">{{lvl.key}}</option>
                         </select>
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="grlivarea">Living Area(sqft)</label>
-                        <input id="grlivarea" name="grlivarea" type="text" class="form-control" [(ngModel)]="house.fullbath">
+                        <input id="grlivarea" name="grlivarea" type="number" class="form-control" [(ngModel)]="house.grlivarea">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="garagecars">Number of car fit in garage</label>
-                        <input id="garagecars" name="garagecars" type="text" class="form-control" [(ngModel)]="house.garagecars">
+                        <input id="garagecars" name="garagecars" type="number" class="form-control" [(ngModel)]="house.garagecars">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="totalbsmsf">Total Basement Area(sqft)</label>
-                        <input id="totalbsmdf" name="totalbsmsf" type="text" class="form-control" [ngModel]="house.totalbsmsf">
+                        <input id="totalbsmdf" name="totalbsmsf" type="number" class="form-control" [(ngModel)]="house.totalbsmsf">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="fullbath">Number of Full Bathroom</label>
-                        <input id="fullbath" name="fullbath" type="text" class="form-control" [(ngModel)]="house.fullbath">
+                        <input id="fullbath" name="fullbath" type="number" class="form-control" [(ngModel)]="house.fullbath">
                     </div>
                     <div class="col-sm-4 form-group">
                         <label for="totrmsabvgrd">Total Rooms Above the Ground</label>
-                        <input id="totrmsabvgrd" name="totrmsabvgrd" type="text" class="form-control" [(ngModel)]="house.totrmsabvgrd">
+                        <input id="totrmsabvgrd" name="totrmsabvgrd" type="number" class="form-control" [(ngModel)]="house.totrmsabvgrd">
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="yearbuilt">Year Built</label>
-                        <input id="yearbuilt" name="yearbuilt" type="text" class="form-control" [(ngModel)]="house.yearbuilt">
+                        <input id="yearbuilt" name="yearbuilt" type="number" class="form-control" [(ngModel)]="house.yearbuilt">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="yearremodadd">Year Remodel Added</label>
-                        <input id="yearremodadd" name="yearremodadd" type="text" class="form-control" [(ngModel)]="house.yearremodadd">
+                        <input id="yearremodadd" name="yearremodadd" type="number" class="form-control" [(ngModel)]="house.yearremodadd">
                     </div>
                     <div class="col-sm-6 form-group">
                         <label for="fireplaces">Number of Fireplace</label>
-                        <input id="fireplaces" name="fireplaces" type="text" class="form-control" [(ngModel)]="house.fireplaces">
+                        <input id="fireplaces" name="fireplaces" type="number" class="form-control" [(ngModel)]="house.fireplaces">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="saleprice">Sale Price</label>
+                        <input [disabled]="!state" id="saleprice" name="saleprice" type="number" class="form-control" [(ngModel)]="house.saleprice">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-2">
-                        <button class="btn btn-success" type="submit" >{{!state ? "Predict": "Update"}}</button>
+                        <button class="btn btn-info" type="button" (click)="onPredictionOrUpdate()">{{!state ? "Predict": "Update"}}</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-danger" type="button" *ngIf="state">Delete</button>
+                        <button class="btn btn-danger" type="button" *ngIf="state" (click)="onDeleteRecord();houseData.resetForm()" >Delete</button>
+                        <button class="btn btn-success" type="submit" *ngIf="!state">Save</button>
                     </div>
                     <div class="col-md-1">
                         <button class="btn btn-primary" type="button">Clear</button>
