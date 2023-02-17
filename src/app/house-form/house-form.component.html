@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
-            <form #houseData = "ngForm" (ngSubmit) = "onSaveResult()">
+            <form #houseData = "ngForm" (ngSubmit) = "onSaveResult(); houseData.resetForm()">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4>House Data Form</h4>
+                        <h2>House Data Form</h2>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                         <div class="col-sm-12">
                             <button class="btn btn-info" type="button" *ngIf="state" (click)="OnCreateNewPrediction(); houseData.resetForm()" >New Prediction</button>
                         </div>
@@ -61,11 +61,11 @@
                         <button class="btn btn-info" type="button" (click)="onPredictionOrUpdate()">{{!state ? "Predict": "Update"}}</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-danger" type="button" *ngIf="state" (click)="onDeleteRecord();houseData.resetForm()" >Delete</button>
-                        <button class="btn btn-success" type="submit" *ngIf="!state">Save</button>
+                        <button class="btn btn-danger" type="button" *ngIf="state" (click)="onDeleteRecord(); houseData.resetForm()" >Delete</button>
+                        <button class="btn btn-success" type="submit" *ngIf="!state" >Save</button>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn btn-primary" type="button">Clear</button>
+                        <button class="btn btn-primary" type="button" (click)="houseData.resetForm()">Clear</button>
                     </div>
                 </div>
             </form>

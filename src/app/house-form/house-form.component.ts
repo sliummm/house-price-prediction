@@ -1,3 +1,4 @@
+//House form component that take values from the template and trigger crud operations
 import { Component, EventEmitter, Input,OnChanges, Output, SimpleChanges} from '@angular/core';
 import { HouseCrudService } from '../services/house-crud.service';
 import { MlModelService } from '../services/ml-model.service';
@@ -10,6 +11,7 @@ import { House } from '../util/house';
 })
 export class HouseFormComponent implements OnChanges{
 
+  //Hard coded qualities table
   qualities = [
     {key:'level 1', value:1, default:true},
     {key:'level 2', value:2, default:false},
@@ -22,13 +24,17 @@ export class HouseFormComponent implements OnChanges{
     {key:'level 9', value:9,default:false},
     {key:'level 10', value:10,default:false}
   ]
+
+  //Take properties from parent component
   @Input('houseDetail') houseDetail!:House
   @Input('formState') formState:any
 
+  //Paa property to parent comoponent
   @Output()
-  OnUpdate = new EventEmitter();
+  onUpdate = new EventEmitter();
 
-  house!:House
+  //Declarations
+  house:any = {}
   state:any
   isInitialized = false
   dbUpdate = false
@@ -40,10 +46,13 @@ export class HouseFormComponent implements OnChanges{
     private mlModel: MlModelService
   ){}
   
+  //Lifecycle hook that monitor property changes inside this component
   ngOnChanges(changes: SimpleChanges): void {
+    if(this.isInitialized){
       this.state = this.formState;
       console.log(this.state)
       this.house = <any>Object.values(this.houseDetail)[0];
+    }
   }
 
   ngOnInit():void{
@@ -61,13 +70,17 @@ export class HouseFormComponent implements OnChanges{
       saleprice: null
     }
     this.state=false;
-    // console.log("House", this.house)
+    this.dbUpdate = false
+    this.isInitialized = true
+    console.log("Is initialized: ", this.dbUpdate)
   }
   
+  //On click event of create nre prediction button
   OnCreateNewPrediction():void{
     this.state = false;
   }
 
+  //On click event of predict/update button
   onPredictionOrUpdate(){
     if (!this.state) {
       console.log("Doing Predication")
@@ -96,11 +109,15 @@ export class HouseFormComponent implements OnChanges{
       this.housecrud.put(body)
       .subscribe(data=>{
         console.log(data)
+        this.dbUpdate = !this.dbUpdate
+        this.onUpdate.emit(this.dbUpdate)
       })
     }
   }
 
+  //Onclick event of save record button to add a data entry into database
   onSaveResult(){
+    console.log(this.house)
     const body = {
       "overallqual": this.house.overallqual,
       "grlivarea":this.house.grlivarea,
@@ -118,15 +135,18 @@ export class HouseFormComponent implements OnChanges{
     .subscribe(data=>{
       console.log(data)
       this.dbUpdate = !this.dbUpdate
-      this.OnUpdate.emit(this.dbUpdate)
+      this.onUpdate.emit(this.dbUpdate)
       console.log(this.dbUpdate)
     })
   }
 
+  //On click event of the delete button and delete a record from database
   onDeleteRecord(){
     this.housecrud.delete(this.house.Id)
     .subscribe(data=>{
       console.log(data)
+      this.dbUpdate = !this.dbUpdate
+      this.onUpdate.emit(this.dbUpdate)
     })
   }
 }
